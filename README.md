@@ -53,36 +53,23 @@ A collaborative platform for software teams to report bugs, suggest features, an
 git clone <repository_url>
 ```
 
-2. Prepare the database in PostgreSQL. You can use this schema setup:
+2. Copy `.env.example` to `.env` and configure your database URL and other variables.
 
-```sql
-CREATE TABLE users (
-  id SERIAL PRIMARY KEY,
-  name VARCHAR(150) NOT NULL,
-  email VARCHAR(150) UNIQUE NOT NULL,
-  password VARCHAR(255) NOT NULL,
-  role VARCHAR(20) DEFAULT 'contributor' CHECK (role IN ('contributor', 'maintainer')),
-  created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
-  updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
-);
-
-CREATE TABLE issues (
-  id SERIAL PRIMARY KEY,
-  title VARCHAR(150) NOT NULL,
-  description TEXT NOT NULL,
-  type VARCHAR(50) NOT NULL CHECK (type IN ('bug', 'feature_request')),
-  status VARCHAR(50) DEFAULT 'open' CHECK (status IN ('open', 'in_progress', 'resolved')),
-  reporter_id INTEGER NOT NULL,
-  created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
-  updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
-);
-```
-
-3. Copy `.env.example` to `.env` and configure it (you must have a running PostgreSQL database).
-4. Run scripts
+3. Install dependencies:
 
 ```bash
 npm install
+```
+
+4. Run the initialization script to create the necessary database tables:
+
+```bash
+node init_db.js
+```
+
+5. Start the development server:
+
+```bash
 npm run dev
 ```
 
