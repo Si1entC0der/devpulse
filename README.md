@@ -4,7 +4,7 @@ A collaborative platform for software teams to report bugs, suggest features, an
 
 ## Live URL
 
-[https://devpulse-api.vercel.app](https://devpulse-api.vercel.app)
+[https://devpulse-api-omega.vercel.app](https://devpulse-api-omega.vercel.app)
 
 ## Features
 
